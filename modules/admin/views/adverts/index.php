@@ -5,6 +5,9 @@
 use yii\widgets\Breadcrumbs;
 use yii\grid\GridView;
 use yii\widgets\Menu;
+use yii\helpers\Html;
+use yii\grid\SerialColumn;
+
 
 echo Breadcrumbs::widget( /*
         array(
@@ -20,18 +23,6 @@ echo Menu::widget([
     )
 ]);
 
-Yii::$app->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$('#bulletin-grid').yiiGridView('update', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-");
 ?>
 
 
@@ -51,20 +42,22 @@ $('.search-form form').submit(function(){
 </div><!-- search-form -->
 
 <?php
+
+
 echo GridView::widget( array(
     'id' => 'bulletin-grid',
     'dataProvider' => $model->search(),
     'columns' => array(
         array(// display 'create_time' using an expression
-            'class' => 'CLinkColumn',
+            'class' => 'yii\grid\SerialColumn',
             'header' => t('name'),
         ),
         array(// display 'create_time' using an expression
-            'class' => 'CLinkColumn',
+            'class' => 'yii\grid\SerialColumn',
             'header' => t('user_id'),
         ),
         array(
-            'class' => 'CLinkColumn',
+            'class' => 'yii\grid\SerialColumn',
             'header' => t('moderated'),
         ),
         array(
@@ -75,7 +68,7 @@ echo GridView::widget( array(
           'text',
          */
         array(
-            'class' => 'bootstrap.widgets.TbButtonColumn',
+            'class' => 'yii\grid\SerialColumn',
         ),
     ),
 ));

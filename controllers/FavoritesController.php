@@ -20,11 +20,32 @@ class FavoritesController extends DefaultController {
         );
     }
 
-    /**
-     * Specifies the access control rules.
-     * This method is used by the 'accessControl' filter.
-     * @return array access control rules
-     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index', 'view'],
+                        'roles' => array('?'),
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['create', 'update'],
+                        'roles' => array('@'),
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['view', 'delete'],
+                        'roles' => array('@'),
+                    ],
+                ]
+            ]
+        ];
+    }
+
     public function accessRules() {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions

@@ -4,6 +4,9 @@
 /* @var $form CActiveForm */
 
 use yii\widgets\ActiveForm;
+use yii\helpers\Url;
+use yii\bootstrap\Button;
+
 
 ?>
 
@@ -11,7 +14,7 @@ use yii\widgets\ActiveForm;
 
     <?php
     $form = ActiveForm::begin( array(
-        'action' => Url::to($this->route),
+        'action' => Url::to($this->context->route),
         'method' => 'get',
         'id' => 'verticalForm',
         'options' => array('class' => 'well'),
@@ -23,7 +26,7 @@ use yii\widgets\ActiveForm;
     </div>
 
     <div class="row">
-        <?php echo $form->field($model, 'name', array('size' => 60, 'maxlength' => 255))->textInput(); ?>
+        <?php echo $form->field($model, 'name')->textInput(); ?>
     </div>
 
     <div class="row">
@@ -43,11 +46,11 @@ use yii\widgets\ActiveForm;
     </div>
 
     <div class="row">
-        <?php echo $form->field($model, 'text', array('rows' => 6, 'cols' => 50))->textarea(); ?>
+        <?php echo $form->field($model, 'text')->textarea(); ?>
     </div>
 
     <div class="row buttons">
-        <?php echo Button::widget( array('buttonType' => 'submit', 'label' => 'Отправить')); ?>
+        <?php echo Button::widget( ['options' => array('type' => 'submit', 'label' => 'Отправить')]); ?>
     </div>
 
     <?php ActiveForm::end(); ?>

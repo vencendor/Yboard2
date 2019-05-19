@@ -7,6 +7,10 @@ use app\models\User;
 use app\models\Category;
 use zxbodya\yii2\galleryManager\GalleryManagerAction;
 use zxbodya\yii2\galleryManager\GalleryBehavior;
+use yii\db\Query;
+use yii\BaseYii;
+use Yii;
+use yii\data\ActiveDataProvider;
 
 /**
  * This is the model class for table "adverts".
@@ -128,52 +132,64 @@ class Adverts extends Model {
         // Warning: Please modify the following code to remove attributes that
         // should not be searched.
 
-        $criteria = new CDbCriteria;
+        $criteria = (new Query);
 
-        $criteria->compare('id', $this->id);
-        $criteria->compare('user_id', $this->user_id);
+        $criteria->from('adverts');
+        $criteria->select('adverts.*');
+
+
+        $criteria->where('id', $this->id);
+        $criteria->where('user_id', $this->user_id);
 
         //$criteria->compare('category_id', $this->category_id);
         if (is_numeric($this->category_id)) {
-            $criteria->addCondition('t.category_id = "' . $this->category_id . '" '
+            $criteria->where('t.category_id = "' . $this->category_id . '" '
                     . ' or (category.lft > "' . Yii::$app->params['categories'][$this->category_id]['lft'] . '"'
                     . ' and category.rgt< "' . Yii::$app->params['categories'][$this->category_id]['rgt'] . '"'
                     . ' and category.root = "' . Yii::$app->params['categories'][$this->category_id]['root'] . '")');
         }
 
         if ($this->fields) {
-            $criteria->addCondition(" t.fields regexp '" . $this->fields . "' ");
+            $criteria->where(" t.fields regexp '" . $this->fields . "' ");
         }
 
         if (is_numeric($this->price_min) and $this->price_max > 0) {
-            $criteria->addCondition("price >= " . $this->price_min . " and price <= " . $this->price_max);
+            $criteria->where("price >= " . $this->price_min . " and price <= " . $this->price_max);
         }
 
-        $criteria->join = 'inner join category on category.id=t.category_id';
 
-        $criteria->compare('type', $this->type);
-        $criteria->compare('location', $this->location, true);
-        $criteria->compare('views', $this->views);
-        $criteria->compare('moderated', $this->moderated, true);
-        $criteria->order = 'id desc';
-        $criteria->limit = Yii::$app->params['adv_on_page'];
+        $criteria->join( 'inner join',  'category', 'category.id=adverts.category_id');
+
+        $criteria->where('type', $this->type);
+        $criteria->where('location', $this->location, true);
+        $criteria->where('views', $this->views);
+        $criteria->where('moderated', $this->moderated, true);
+        $criteria->orderBy('adverts.id' ) ;
+        $criteria->limit( Yii::$app->params['adv_on_page'] );
 
         if ($strict) {
-            $criteria->compare('t.name', $this->name, true, "or");
-            $criteria->compare('text', $this->text, true, "or");
+            $criteria->where('t.name', $this->name, true, "or");
+            $criteria->where('text', $this->text, true, "or");
         } else {
             $search_str = explode(" ", $this->text);
             foreach ($search_str as $v) {
                 if (mb_strlen($v) > 2) {
-                    $criteria->compare('t.name', $v, true, "or");
-                    $criteria->compare('text', $v, true, "or");
+                    $criteria->where('t.name', $v, true, "or");
+                    $criteria->where('text', $v, true, "or");
                 }
             }
         }
+        /**/
 
-        return new ActiveDataProvider($this, array(
-            'criteria' => $criteria,
+        // dd( $criteria->createCommand()->sql);
+
+        return new ActiveDataProvider( array(
+            'query' => $criteria,
+            'pagination' => [
+                'pageSize' => 2,
+            ],
         ));
+
     }
 
     public function scopes() {

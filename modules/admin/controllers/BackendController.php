@@ -8,6 +8,7 @@ class BackendController extends Controller {
     public $layout = 'admin-template';
     public $title;
     public $pageTitle;
+    public $menu = array();
 
     /**
      * @return array action filters

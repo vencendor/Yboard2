@@ -50,6 +50,18 @@ use yii\widgets\Breadcrumbs;
 
                 <!--Skin Script: Place this script in head to load scripts for skins and rtl support-->
 
+                <script>
+                    $('.search-button').click(function(){
+                        $('.search-form').toggle();
+                        return false;
+                    });
+                    $('.search-form form').submit(function(){
+                        $('#bulletin-grid').yiiGridView('update', {
+                            data: $(this).serialize()
+                        });
+                        return false;
+                    });
+                </script>
                 </head>
                 <!-- /Head -->
                 <!-- Body -->
@@ -115,7 +127,7 @@ use yii\widgets\Breadcrumbs;
                                             'linkOptions' => array('class' => 'menu-dropdown'),
                                         ),
                                         array('label' => "Панель администратора",
-                                            'url' => array('view')),
+                                            'url' => array('adverts/index')),
                                         array('label' => t('Bulletin') . '<i class="menu-expand"></i>',
                                             'url' => "#",
                                             'items' => array(
@@ -126,15 +138,16 @@ use yii\widgets\Breadcrumbs;
                                             ),
                                             'linkOptions' => array('class' => 'menu-dropdown'),
                                         ),
-                                        array('label' => 'Категории', 'url' => array('/view/category')),
+                                        array('label' => 'Категории', 'url' => array('category/index')),
                                         array('label' => t("Pages"), 'url' => array('/cms/cms')),
-                                        array('label' => "Баннерные блоки", 'url' => array('/view/banners')),
-                                        array('label' => "Почтовая рассылка", 'url' => array('/view/delivery')),
-                                        array('label' => "Настройки", 'url' => array('/view/default/settings')),
-                                        array('label' => "Помощь", 'url' => array('/view/default/help')),
+                                        array('label' => "Баннерные блоки", 'url' => array('banners/index')),
+                                        array('label' => "Почтовая рассылка", 'url' => array('delivery')),
+                                        array('label' => "Настройки", 'url' => array('default/settings')),
+                                        array('label' => "Помощь", 'url' => array('default/help')),
                                     ),
+                                    'encodeLabels' => false,
                                     //'options' => array('class' => 'nav sidebar-menu'),
-                                    // 'encodeLabel' => FALSE,
+
                                     // 'submenuHtmlOptions' => array('class' => 'submenu'),
                                         )
                                 );
@@ -179,11 +192,12 @@ use yii\widgets\Breadcrumbs;
 
                                         echo Menu::widget( array(
                                             //'type' => 'list',
-                                            'items' => $this->menu,
+                                            'items' => $this->context->menu,
                                             //'options' => array('class' => 'operations'),
                                             // 'encodeLabel' => false,
                                         ));
                                         /**/
+
                                         ?>
                                     </div>
                                     <?= $content ?>

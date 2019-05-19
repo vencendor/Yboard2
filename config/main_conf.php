@@ -82,12 +82,16 @@ return [
                 [
                     'identityClass' => 'app\models\User',
                     'enableAutoLogin' => true,
+                    'class' => 'app\components\WebUser',
                     // 'loginUrl' =>  [   0 => '/login',  ],
                 ],
             'cache' =>
                 [
                     'class' => 'yii\caching\FileCache',
                 ],
+            'authManager' => [
+                'class' => 'yii\rbac\PhpManager',
+            ],
             /*
               'evenness' =>
               array(
@@ -126,6 +130,7 @@ return [
                             '<id:\\d+>' => 'adverts/view/id/<id>',
                             'category/<cat_id:\\d+>' => 'adverts/category',
                             'logout' => 'login/logout',
+                            'site/login' => 'login/login',
                             '/banner_edit' => '/view/banners/edit',
                             '/banner_show' => '/view/banners/show',
                             'site/category/<cat_id:\\d+>' => 'adverts/category/cat_id/<cat_id>',

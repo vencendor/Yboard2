@@ -17,11 +17,6 @@ function mb_ucfirst($str) {
     return $fc . mb_substr($str, 1, NULL, 'utf8');
 }
 
-function dump( $var ){
-    VarDumper::dump( $var );
-}
-
-
 
 class PeopleDate {
 

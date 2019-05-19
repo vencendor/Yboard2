@@ -42,33 +42,25 @@ class AdvertsController extends DefaultController {
         );
     }
 
-    /**
-     * Specifies the access control rules.
-     * This method is used by the 'accessControl' filter.
-     * @return array access control rules
-     */
-    public function accessRules() {
-        return array(
-            // allow all users to perform actions
-            array('allow',
-                'actions' => array('index', 'error', 'view', 'favorites', 'contact', 'bulletin', 'category', 'captcha', 'page', 'advertisement', 'getfields', 'search', 'user'),
-                'users' => array('*'),
-            ),
-            // allow authenticated user
-            array('allow', 'actions' => array('create'),
-                'users' => array('@'),
-            ),
-            // allow view user
-            array('allow', 'actions' => array('importUsers', 'importAdvertss'),
-                'users' => array('view'),
-            ),
-                /*
-                  array('deny',  // deny all users
-                  'users'=>array('*'),
-                  ),
-                 * 
-                 */
-        );
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index', 'error', 'favorites', 'contact', 'bulletin', 'category', 'captcha', 'page', 'advertisement', 'getfields', 'search', 'user'],
+                        'roles' => array('@'),
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['create','view'],
+                        'roles' => array('admin', 'sdsd'),
+                    ],
+                ]
+            ]
+        ];
     }
 
     public function actionSetFavorites($id) {
