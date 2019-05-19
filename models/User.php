@@ -16,6 +16,7 @@ class User extends Model implements IdentityInterface {
     public $full_name;
     public $skype;
     public $username;
+    public $auth_key;
 
     const USERS_PROCESSING = 10;
 

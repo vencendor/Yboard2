@@ -13,10 +13,6 @@ class WebUser extends \yii\web\User
     public function can($permissionName, $params = [], $allowCaching = true)
     {
 
-
-        dump(  \Yii::$app->request->get()  );
-        dump(  \Yii::$app->controller  );
-
         if( $permissionName === "admin" and $this->identity->superuser ){
             return true;
         }
@@ -36,5 +32,19 @@ class WebUser extends \yii\web\User
             return true;
         }
 
+    }
+
+    public static function crypt($string = "") {
+
+        $hash = 'md5';
+
+        $salt = "!~ALZ875(%";
+
+        if ($hash == "md5")
+            return md5($string . $salt);
+        if ($hash == "sha1")
+            return sha1($string . $salt);
+        else
+            return hash($hash, $string . $salt);
     }
 }

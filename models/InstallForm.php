@@ -5,6 +5,11 @@
  * ContactForm is the data structure for keeping
  * contact form data. It is used by the 'contact' action of 'SiteController'.
  */
+
+namespace app\models;
+
+use Yii;
+
 class InstallForm extends \yii\base\Model {
 
     public $mysql_server;
@@ -23,10 +28,11 @@ class InstallForm extends \yii\base\Model {
     public function rules() {
         return array(
             // name, email, subject and body are required
+            /*
             array( ['username', 'userpass', 'userpass2', 'useremail', 'site_name'], 'required'),
-            array(['username', 'userpass', 'userpass2', 'useremail', 'site_name'], 'length', 'max' => 20, 'min' => 3),
+            //array(['username', 'userpass', 'userpass2', 'useremail', 'site_name'], 'length', 'max' => 20, 'min' => 3),
             array(['mysql_server', 'mysql_login', ' mysql_password', 'mysql_db_name'], 'required'),
-            array(['mysql_server', 'mysql_login', ' mysql_password', 'mysql_db_name'], 'length', 'max' => 20, 'min' => 3),
+            //array(['mysql_server', 'mysql_login', ' mysql_password', 'mysql_db_name'], 'length', 'max' => 20, 'min' => 3),
             array('useremail', 'email'),
             array('username', 'match', 'pattern' => '/^[A-Za-z0-9_]+$/u',
                 'message' => Yii::t('lang', "Incorrect symbols (A-z0-9).")
@@ -38,6 +44,7 @@ class InstallForm extends \yii\base\Model {
             array('userpass', 'compare', 'compareAttribute' => 'userpass2',
                 'message' => Yii::t('lang', "Retype Password is incorrect.")
             )
+            /**/
         );
     }
 

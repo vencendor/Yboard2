@@ -121,10 +121,12 @@ class ConfigForm extends \yii\base\Model {
      *
      * @return array
      */
+    /*
     public function getAttributes($names = NULL) {
         $this->attributesRecursive($this->_config, $output);
         return $output;
     }
+    /**/
 
     /**
      * Возвращает имена всех атрибутов

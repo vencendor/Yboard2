@@ -5,7 +5,10 @@
  * and open the template in the editor.
  */
 
+
 use yii\widgets\ActiveForm;
+use yii\bootstrap4\Button;
+use yii\helpers\Html;
 
 ?>
 
@@ -25,7 +28,7 @@ $form = ActiveForm::begin( array(
 
 <fieldset>
     <label> Данные создаваемого проекта </label>
-    <div class='install_blocks' > 
+    <div class='install_blocks' >
         <?php echo $form->field($model, 'site_name')->textInput(); ?>
     </div>
 </fieldset>
@@ -33,7 +36,7 @@ $form = ActiveForm::begin( array(
 
 <fieldset>
     <label> Данные администратора </label>
-    <div class='install_blocks' > 
+    <div class='install_blocks' >
         <?php echo $form->field($model, 'username')->textInput(); ?>
 
         <?php echo $form->field($model, 'userpass')->textInput(); ?>
@@ -47,7 +50,7 @@ $form = ActiveForm::begin( array(
 
 <fieldset>
     <label> Данные для подключения к базе данных </label>
-    <div  class='install_blocks' > 
+    <div  class='install_blocks' >
         <?php echo $form->field($model, 'mysql_server')->textInput(); ?>
 
         <?php echo $form->field($model, 'mysql_db_name')->textInput(); ?>
@@ -61,7 +64,8 @@ $form = ActiveForm::begin( array(
 <br/>
 
 
-<?php echo Button::widget( array('buttonType' => 'submit', 'label' => 'Отправить')); ?>
+
+<?php echo Html::submitButton('Отправить'); ?>
 
 
 <?php ActiveForm::end(); ?>

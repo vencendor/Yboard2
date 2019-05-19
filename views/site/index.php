@@ -8,6 +8,7 @@ $this->context->pageTitle = Yii::$app->name;
 
 $ic = 0;
 
+if( is_array(Yii::$app->params['categories']) )
 foreach (Yii::$app->params['categories'] as $cat) {
     if ($cat['icon'] and $cat['level'] == 1) {
 

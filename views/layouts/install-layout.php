@@ -1,10 +1,27 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php
+
+    use yii\helpers\Html;
+    use yii\helpers\Url;
+
+
+
+
+?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title><?php echo Html::encode($this->context->pageTitle); ?></title>
         <link href="<?php echo Url::base(); ?>/css/main_style.css" rel="stylesheet" type="text/css" />
-        <?php Yii::$app->bootstrap->register(); ?>
+        <script src="<?php echo Url::base(); ?>/js/yboard.js" ></script>
+        <link href="<?php echo Url::base(); ?>/css/main_style.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+        <link id="page_favicon" href="favicon.png" rel="icon" type="image/x-icon" />
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <?php $this->head() ?>
     </head>
 
     <body>
@@ -12,19 +29,7 @@
             <div id="topheader">
                 <a href='<?php echo Url::base(); ?>' class="logo">Доска объявлений на Yii</a>
                 <div class="menu_area">
-                    <div class='ideas'>
-                        <a href="<?= Url::to("adverts") ?>" class="general">Объявления</a> 
-                        <a href='<?= Url::to("adverts/create") ?>' class="menu_text"><i class='fa fa-plus'></i>добавить</a>
-                    </div>
-                    <div class='links'>
-                        <a href="<?= Url::to("user") ?>" class="general">Пользователи</a>
-                    </div>
-                    <div class='info'>
-                        <a href="<?= Url::to("site/page") ?>" class="general">Правила работы</a> 
-                    </div>
-                    <div class="works">
-                        <a href="<?= Url::to("site/contacts") ?>" class="general">Контакты</a>
-                    </div>
+                    Установка
                 </div>
             </div>
         </div>

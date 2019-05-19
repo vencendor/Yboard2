@@ -64,20 +64,24 @@ class DefaultController extends Controller {
 
     public function __construct($id, $module = null) {
 
-        global $CONFIG;
+        global $config_path;
 
         parent::__construct($id, $module);
 
-        if (!is_file(dirname($CONFIG) . "/install")) {
-            
-           
+
+
+        if (!is_file(dirname($config_path) . "/install")) {
+
             $this->settings = require Yii::getAlias('@config/settings') . '.php';
             $this->banners = include_once Yii::getAlias('@config/banners') . '.php';
             //$this->categories = $this->getCategories();
 
             Yii::$app->params['categories'] = Category::getCategories();
         } elseif (Yii::$app->getRequest()->getPathInfo() !== "site/install") {
-            $this->redirect(Url::base() . '/site/install');
+
+            //------------------- Start install------------------
+            return $this->actionInstall();
+
         }
 
         Yii::$app->params['meta'] = Yii::$app->params['meta'][\Yii::$app->language];
@@ -98,6 +102,12 @@ class DefaultController extends Controller {
             ini_set("display_errors", 1);
         }
     }
+
+    public function actionInstall()
+    {
+        return "Default controller empty install";
+    }
+
 
     public function getBanner($var = false) {
         $debug = "";
