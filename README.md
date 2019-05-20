@@ -1,25 +1,18 @@
 # Yboard - движок доски объявлений на Yii
 
 
-Основное зеркало проекта на котором будут выходить обновления - https://github.com/vencendor/yboard
+Основное зеркало проекта на котором будут выходить обновления - https://github.com/vencendor/Yboard2
 
 Сайт движка и демо - http://yboard.org
 
 
 ### Установка:
 
-Загрузите framework Yii https://github.com/yiisoft/yii
-
-
-Из архива Yii можете разархивировать только папку 'framework'.
-
-В ту же папку распаковываем Yboard. Пути к папке фрэимворка можно подправить в index.php. 
-
-Убедитесь что папки /assets  и /protected/runtime доступны для записи
-также необходимо открыть для записи файлы /protected/config/main.php и /protected/config/settings.php
+git clone https://github.com/vencendor/Yboard2.git
+cd Yboard2
+composer install
 
 Создайте пустую базу данных. 
-
 При первом запуске будет предложенно ввести данные для подключения к базе и произойдет установка
 
 
@@ -52,7 +45,7 @@
     Поддержка многоязычности на сайте
     
 
-Скачать можно на github - https://github.com/vencendor/yboard
+Скачать можно на github - https://github.com/vencendor/Yboard2
 
 По вопросам сотрудничества и поддержки - yboard@mail.ru
 
