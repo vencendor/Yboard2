@@ -9,7 +9,9 @@
 ### Установка:
 
 git clone https://github.com/vencendor/Yboard2.git
+
 cd Yboard2
+
 composer install
 
 Создайте пустую базу данных. 
