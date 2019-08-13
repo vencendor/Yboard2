@@ -32,3 +32,6 @@ tests/_support/_generated
 #vagrant folder
 /.vagrant
 /config/install
+
+# All local files
+*-local.php
