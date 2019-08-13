@@ -1,6 +1,6 @@
 <? return array (
-  'id' => 'Yboard2',
-  'basePath' => 'D:\\xampp\\htdocs\\yboard2',
+  'id' => 'Yboard2',  
+  'basePath' => __DIR__ . '/..',
   'language' => 'ru-RU',
   'name' => 'Zigzigz zig',
   'bootstrap' => 
